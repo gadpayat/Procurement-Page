@@ -4,145 +4,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>PCRP / KKB-CDD Procurement Portal</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <title>Procurement Portal</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: Poppins, sans-serif;
-            background: #eef5f6;
-            color: #203040;
+            margin: 0;
+            background: transparent;
+            font-family: Arial, sans-serif;
         }
 
-        header {
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, .8);
-            backdrop-filter: blur(8px);
-            padding: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        main {
-            max-width: 1400px;
-            margin: auto;
-            padding: 40px;
-        }
-
-        .portal {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        @media (max-width:1000px) {
-            .portal {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width:640px) {
-            .portal {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .module {
+        .wrap {
             display: flex;
-            flex-direction: column;
+            gap: 22px;
+            padding: 20px;
+            justify-content: center;
+            flex-wrap: nowrap;
         }
 
-        .procurement-box {
-            height: 180px;
+        .folder {
             position: relative;
-            cursor: pointer;
-            animation: float 5s ease-in-out infinite;
+            width: 300px;
         }
 
-        .shadow {
+        .tab {
             position: absolute;
-            left: 10%;
-            bottom: 0;
-            width: 80%;
-            height: 18px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, .2);
-            filter: blur(12px);
-        }
-
-        .box {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 10px;
-            height: 145px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #deb57b, #c88f4d);
-            box-shadow: 0 20px 35px rgba(0, 0, 0, .25);
-        }
-
-        .box::before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
             top: 0;
+            left: 38%;
             width: 70px;
             height: 22px;
-            background: #f5dfbf;
+            background: #f6dfbf;
             border-radius: 0 0 6px 6px;
         }
 
-        .content {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-weight: 700;
-        }
-
-        .icon {
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        .accordion {
-            display: none;
-            margin-top: 12px;
-            padding: 15px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, .15);
-        }
-
-        .accordion a {
-            display: block;
-            padding: 10px;
-            margin: 6px 0;
-            background: #eef7f7;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #0c4b5b;
+        .main {
+            margin-top: 18px;
+            width: 100%;
+            height: 145px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(#dfb06d, #cf9756);
+            font-size: 22px;
+            font-weight: bold;
+            color: #183153;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, .25);
+            animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
             50% {
-                transform: translateY(-8px);
+                transform: translateY(-6px);
             }
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            background: rgba(255, 255, 255, .5);
+            animation: ripple .6s linear;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .panel {
+            display: none;
+            margin-top: 8px;
+            padding: 8px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .87);
+        }
+
+        .panel.open {
+            display: block;
+        }
+
+        .sub {
+            display: block;
+            width: 100%;
+            margin: 4px 0;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .nest {
+            display: none;
+            margin-left: 14px;
+        }
+
+        .nest.open {
+            display: block;
+        }
+
+        footer {
+            padding: 10px;
+            text-align: center;
+            font-size: 11px;
+            font-style: italic;
+            color: #555;
         }
     </style>
 
@@ -150,126 +116,199 @@
 
 <body>
 
-    <header>
-        <h1>📦 PCRP / KKB-CDD Procurement Portal</h1>
-        <p>Professional Procurement Management Dashboard</p>
-    </header>
+    <div class="wrap">
 
-    <main>
+        <!-- Planning -->
+        <div class="folder">
 
-        <section class="portal">
+            <div class="tab"></div>
 
-            <!-- Planning -->
-            <div class="module">
+            <button class="main" onclick="toggle('p',event)">
+                🛒
+                <br><br>
+                Planning
+            </button>
 
-                <div class="procurement-box">
-                    <div class="shadow"></div>
+            <div class="panel" id="p">
 
-                    <div class="box"></div>
+                <button class="sub" onclick="go()">Planning 1</button>
+                <button class="sub" onclick="go()">Planning 2</button>
+                <button class="sub" onclick="go()">Planning 3</button>
+                <button class="sub" onclick="go()">Planning 4</button>
 
-                    <div class="content">
-                        <div class="icon">🛒</div>
-                        <h2>Planning</h2>
-                    </div>
+            </div>
+
+        </div>
+
+        <!-- BAC -->
+        <div class="folder">
+
+            <div class="tab"></div>
+
+            <button class="main" onclick="toggle('b',event)">
+                📋
+                <br><br>
+                BAC
+            </button>
+
+            <div class="panel" id="b">
+
+                <button class="sub" onclick="go()">BAC 1</button>
+                <button class="sub" onclick="go()">BAC 2</button>
+                <button class="sub" onclick="go()">BAC 3</button>
+                <button class="sub" onclick="go()">BAC 4</button>
+
+            </div>
+
+        </div>
+
+        <!-- Contracts -->
+        <div class="folder">
+
+            <div class="tab"></div>
+
+            <button class="main" onclick="toggle('c',event)">
+                🤝
+                <br><br>
+                Contracts
+            </button>
+
+            <div class="panel" id="c">
+
+                <button class="sub" onclick="nest('c1')">
+                    Contract Group 1
+                </button>
+
+                <div class="nest" id="c1">
+
+                    <button class="sub" onclick="go()">Item 1</button>
+                    <button class="sub" onclick="go()">Item 2</button>
+                    <button class="sub" onclick="go()">Item 3</button>
+                    <button class="sub" onclick="go()">Item 4</button>
+                    <button class="sub" onclick="go()">Item 5</button>
+                    <button class="sub" onclick="go()">Item 6</button>
+
                 </div>
 
-                <div class="accordion">
-                    <a href="#">Annual Procurement Plan</a>
-                    <a href="#">PPMP</a>
-                    <a href="#">Market Survey</a>
-                    <a href="#">Budget Allocation</a>
+                <button class="sub" onclick="nest('c2')">
+                    Contract Group 2
+                </button>
+
+                <div class="nest" id="c2">
+
+                    <button class="sub" onclick="go()">Item 1</button>
+                    <button class="sub" onclick="go()">Item 2</button>
+                    <button class="sub" onclick="go()">Item 3</button>
+
                 </div>
 
             </div>
 
-            <!-- BAC -->
-            <div class="module">
+        </div>
 
-                <div class="procurement-box">
-                    <div class="shadow"></div>
+        <!-- Monitoring -->
+        <div class="folder">
 
-                    <div class="box"></div>
+            <div class="tab"></div>
 
-                    <div class="content">
-                        <div class="icon">📋</div>
-                        <h2>BAC</h2>
-                    </div>
+            <button class="main" onclick="toggle('m',event)">
+                🏭
+                <br><br>
+                Monitoring
+            </button>
+
+            <div class="panel" id="m">
+
+                <button class="sub" onclick="nest('m1')">
+                    Monitoring A
+                </button>
+
+                <div class="nest" id="m1">
+
+                    <button class="sub" onclick="go()">Report 1</button>
+                    <button class="sub" onclick="go()">Report 2</button>
+                    <button class="sub" onclick="go()">Report 3</button>
+                    <button class="sub" onclick="go()">Report 4</button>
+                    <button class="sub" onclick="go()">Report 5</button>
+                    <button class="sub" onclick="go()">Report 6</button>
+                    <button class="sub" onclick="go()">Report 7</button>
+                    <button class="sub" onclick="go()">Report 8</button>
+                    <button class="sub" onclick="go()">Report 9</button>
+                    <button class="sub" onclick="go()">Report 10</button>
+                    <button class="sub" onclick="go()">Report 11</button>
+                    <button class="sub" onclick="go()">Report 12</button>
+
                 </div>
 
-                <div class="accordion">
-                    <a href="#">Folder 1</a>
-                    <a href="#">Folder 2</a>
-                    <a href="#">Folder 3</a>
-                    <a href="#">Folder 4</a>
-                </div>
+                <button class="sub" onclick="nest('m2')">
+                    Monitoring B
+                </button>
 
-            </div>
+                <div class="nest" id="m2">
 
-            <!-- Contracts -->
-            <div class="module">
+                    <button class="sub" onclick="go()">Report 1</button>
+                    <button class="sub" onclick="go()">Report 2</button>
+                    <button class="sub" onclick="go()">Report 3</button>
+                    <button class="sub" onclick="go()">Report 4</button>
+                    <button class="sub" onclick="go()">Report 5</button>
 
-                <div class="procurement-box">
-                    <div class="shadow"></div>
-
-                    <div class="box"></div>
-
-                    <div class="content">
-                        <div class="icon">🤝</div>
-                        <h2>Contracts</h2>
-                    </div>
-                </div>
-
-                <div class="accordion">
-                    <a href="#">Folder 1</a>
-                    <a href="#">Folder 2</a>
-                </div>
-
-            </div>
-
-            <!-- Monitoring -->
-            <div class="module">
-
-                <div class="procurement-box">
-                    <div class="shadow"></div>
-
-                    <div class="box"></div>
-
-                    <div class="content">
-                        <div class="icon">🏭</div>
-                        <h2>Monitoring</h2>
-                    </div>
-                </div>
-
-                <div class="accordion">
-                    <a href="#">Folder 1</a>
-                    <a href="#">Folder 2</a>
                 </div>
 
             </div>
 
-        </section>
+        </div>
 
-    </main>
+    </div>
 
-    <footer style="text-align:center; padding:30px;">
-        © 2026 PCRP / KKB-CDD Procurement Portal
+    <footer>
+        Procurement Portal Demo • Replace go() URLs with your Google Sheets or other links.
     </footer>
 
     <script>
-        document.querySelectorAll(".procurement-box").forEach(box => {
 
-            box.onclick = () => {
+        function go() {
+            window.open("https://example.com", "_blank");
+        }
 
-                const accordion = box.parentElement.querySelector(".accordion");
+        function toggle(id, e) {
 
-                accordion.style.display =
-                    accordion.style.display === "block"
-                        ? "none"
-                        : "block";
+            document.querySelectorAll(".panel").forEach(panel => {
 
-            };
+                if (panel.id === id) {
+                    panel.classList.toggle("open");
+                } else {
+                    panel.classList.remove("open");
+                }
 
-        });
+            });
+
+            const button = e.currentTarget;
+            const ripple = document.createElement("span");
+
+            ripple.className = "ripple";
+
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+
+            ripple.style.width = diameter + "px";
+            ripple.style.height = diameter + "px";
+
+            const rect = button.getBoundingClientRect();
+
+            ripple.style.left = (e.clientX - rect.left - diameter / 2) + "px";
+            ripple.style.top = (e.clientY - rect.top - diameter / 2) + "px";
+
+            button.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+
+        }
+
+        function nest(id) {
+            document.getElementById(id).classList.toggle("open");
+        }
+
     </script>
 
 </body>
