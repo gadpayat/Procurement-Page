@@ -393,9 +393,13 @@
 
     <script>
 
-        function go() {
-            window.open("https://example.com", "_blank");
-        }
+        function go(url) {
+    if (url) {
+        window.open(url, "_blank");
+    } else {
+        alert("No link has been assigned yet.");
+    }
+}
 
         function toggle(id, e) {
 
