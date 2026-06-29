@@ -14,8 +14,8 @@
         }
 
         .wrap {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 300px);
             justify-content: center;
             gap: 22px;
             padding: 20px;
@@ -23,8 +23,7 @@
 
         .folder {
             position: relative;
-            width: calc(50% - 22px);
-            max-width: 300px;
+            width: 300px;
         }
 
         .tab {
