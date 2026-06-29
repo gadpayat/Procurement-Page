@@ -89,23 +89,20 @@
 .main::before{
     content:"";
     position:absolute;
-    top:2px;
-    left:2px;
-    right:2px;
-    height:45%;
-
-    border-radius:12px 12px 45px 45px;
+    inset:0;
 
     background:linear-gradient(
-        to bottom,
-        rgba(255,255,255,.55),
-        rgba(255,255,255,.18),
-        transparent
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,.15) 35%,
+        rgba(255,255,255,.55) 50%,
+        rgba(255,255,255,.15) 65%,
+        transparent 100%
     );
 
-    pointer-events:none;
+    mix-blend-mode:screen;
+    opacity:.7;
 }
-
 .main::after{
     content:"";
     position:absolute;
@@ -127,11 +124,11 @@
 
     transform:translateY(-8px) scale(1.03);
 
-    box-shadow:
-        0 18px 28px rgba(0,0,0,.30),
-        inset 0 2px 2px rgba(255,255,255,.6),
-        inset 0 -2px 4px rgba(0,0,0,.15),
-        0 0 28px rgba(255,235,180,.65);
+box-shadow:
+0 15px 25px rgba(0,0,0,.35),
+0 0 25px rgba(255,225,0,.45),
+inset 0 2px 2px rgba(255,255,255,.45),
+inset 0 -2px 3px rgba(0,0,0,.15);
 }
 
 .main span.shine{
