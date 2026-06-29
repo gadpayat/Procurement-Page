@@ -741,26 +741,29 @@ document.body.appendChild(p);
 3D Hover
 ==========================*/
 
-document.querySelectorAll(".procurement-box").forEach(card=>{
+document.querySelectorAll(".procurement-box").forEach(card => {
 
-card.addEventListener("mousemove",e=>{
+    card.addEventListener("click", function (e) {
 
-const rect=card.getBoundingClientRect();
+        // Close all other accordions
+        document.querySelectorAll(".accordion").forEach(panel => {
+            if (panel !== this.parentElement.querySelector(".accordion")) {
+                panel.style.display = "none";
+            }
+        });
 
-const x=e.clientX-rect.left;
+        // Toggle the clicked accordion
+        const panel = this.parentElement.querySelector(".accordion");
 
-const y=e.clientY-rect.top;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
 
-const rx=((y/rect.height)-0.5)*-12;
-
-const ry=((x/rect.width)-0.5)*12;
-
-card.style.transform=
-
-`rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+    });
 
 });
-
 card.addEventListener("mouseleave",()=>{
 
 card.style.transform="";
