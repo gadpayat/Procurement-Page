@@ -291,19 +291,32 @@
 }
 
 .portal-title{
-    font-size:60px;
+
+    font-size:78px;              /* Increase size (adjust to 82px or 86px if desired) */
     font-weight:900;
     letter-spacing:10px;
     text-transform:uppercase;
 
-    background:linear-gradient(
-        180deg,
-        #FFFFFF 0%,
-        #D8F8FF 18%,
-        #00D4FF 45%,
-        #0079AD 65%,
-        #03334D 100%
-    );
+    color:#FFFFFF;
+
+    margin:0;
+    padding:0;
+
+    /* Metallic Golden-Blue Glow */
+    text-shadow:
+        0 2px 0 #FFFFFF,
+        0 3px 0 #FFE98A,
+        0 5px 4px rgba(0,0,0,.35),
+
+        /* Golden Glow */
+        0 0 8px rgba(247,230,4,.90),
+        0 0 18px rgba(207,178,3,.75),
+        0 0 35px rgba(157,144,1,.60),
+
+        /* Blue Metallic Glow */
+        0 0 15px rgba(0,212,255,.70),
+        0 0 30px rgba(0,121,173,.60),
+        0 0 50px rgba(3,51,77,.50);
 
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
