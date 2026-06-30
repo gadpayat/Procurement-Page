@@ -194,31 +194,73 @@
             display: block;
         }
 
-        .sub{
-    display:block;
-    width:100%;
-    margin:6px 0;
-    padding:10px 14px;
-    cursor:pointer;
+        .sub {
+    display: block;
+    width: 100%;
+    margin: 4px 0;
+    padding: 10px 12px;
+    cursor: pointer;
 
-    color:#ffffff;
-    font-weight:600;
-    font-size:14px;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
 
-    border:none;
-    border-radius:8px;
-
-    background:linear-gradient(
+    background: linear-gradient(
         90deg,
         #363C00 0%,
-        #5C5E01 15%,
-        #9D9001 35%,
-        #F7E604 50%,
-        #9D9001 65%,
-        #5C5E01 85%,
+        #5C5E01 12%,
+        #9D9001 22%,
+        #5C5E01 32%,
+        #3C4200 42%,
+        #CFB203 50%,
+        #F7E604 58%,
+        #CFB203 66%,
+        #5C5E01 78%,
+        #3C4200 90%,
         #363C00 100%
     );
 
+    box-shadow:
+        0 3px 8px rgba(0,0,0,.25),
+        inset 0 1px 1px rgba(255,255,255,.35);
+
+    transition: all .25s ease;
+}
+
+.sub:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 6px 14px rgba(0,0,0,.35),
+        0 0 10px rgba(247,230,4,.45);
+}
+
+.sub:active {
+    transform: scale(.98);
+}
+
+.nest .sub {
+    background: initial;
+    color: initial;
+    border: initial;
+    border-radius: initial;
+    box-shadow: initial;
+    font-size: inherit;
+    font-weight: inherit;
+    padding: 8px;
+    transform: none;
+}
+
+.nest .sub:hover {
+    transform: none;
+    filter: none;
+    box-shadow: initial;
+}
+        
         .nest {
             display: none;
             margin-left: 14px;
