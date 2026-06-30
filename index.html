@@ -291,20 +291,29 @@
 }
 
 .portal-title{
-    font-size:65px;
+    font-size:60px;
     font-weight:900;
-    letter-spacing:8px;
+    letter-spacing:10px;
     text-transform:uppercase;
 
-    color:#ffffff;
+    background:linear-gradient(
+        180deg,
+        #FFFFFF 0%,
+        #D8F8FF 18%,
+        #00D4FF 45%,
+        #0079AD 65%,
+        #03334D 100%
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
 
     text-shadow:
-        0 2px 0 #00324a,
-        0 4px 8px rgba(0,0,0,.35),
-        0 0 12px rgba(0,212,255,.35);
+        0 3px 6px rgba(0,0,0,.35),
+        0 0 12px rgba(0,212,255,.25);
 
     margin:0;
-    padding:0;
 }
        
     </style>
